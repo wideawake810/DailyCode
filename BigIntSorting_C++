@@ -1,0 +1,65 @@
+/*Hello all! This is how I solved the BigInt Sorting problem under Algorithms>Sorting>Big Sorting in hackerrank with C++. 
+  I used a custom comparison function as the third parameter to the sort function in the "algorithm" header file of C++.
+  This was to compare the strings based on their integer/ascii value and not lexicographically without having to worry about 
+  converting them to big integers which aren't as easy to handle in C++ as in Java and C# */
+  
+/*You can test the code below with this test data:
+Sample Input:
+==================================
+6
+31415926535897932384626433832795
+1
+3
+10
+3
+5
+=================================
+Sample Output:
+==================================
+1
+3
+3
+5
+10
+31415926535897932384626433832795
+==================================
+ 
+ #include <bits/stdc++.h>
+
+using namespace std;
+    bool wayToSort(string i, string j) 
+    {
+        if(i.length()<j.length())
+            return true;
+        else if(i.length()>j.length())
+            return false;
+        else
+        {
+            return i<j;   
+        }
+    }
+
+int main(){
+    int n;
+    cin >> n;
+    vector<string> unsorted(n);
+
+    for(int unsorted_i = 0; unsorted_i < n; unsorted_i++){
+       cin >> unsorted[unsorted_i];
+    }
+//sorts lexicographically
+//    sort(unsorted.begin(),unsorted.begin()+n);
+    
+    //to sort based on integer value of string, lets define custom comparison function
+    sort(unsorted.begin(),unsorted.begin()+n,wayToSort);
+    
+    for(int unsorted_i = 0; unsorted_i < n; unsorted_i++){
+       cout << unsorted[unsorted_i]<<endl;
+    }    
+    // your code goes here
+    return 0;
+}
+
+
+  
+  
